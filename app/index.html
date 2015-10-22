@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+
+<html lang="en" ng-app="myApp" class="no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>AngularJS Sudoku</title>
+	<meta name="description" content="angularjs and sudoku">
+	<meta name="keywords" content="michael corbridge, angularjs, sudoku, algorithms" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+	<link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+	<link rel="stylesheet" href="app.css">
+	<script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+
+<style>
+
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+		/* display: none; <- Crashes Chrome on hover */
+		-webkit-appearance: none;
+		margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+	}
+
+	.cell {
+		width: 70px;
+		height: 70px;
+		font-size: 50pt;
+		border:1px solid #8AC007;
+		text-align: center;
+	}
+
+	.hideValue{
+		color:transparent;
+	}
+
+	.cell_0 {
+		position: absolute;
+		top: 10px;
+		left: 10px;
+		visibility: visible;
+	}
+
+	.cell_1 {
+		position: absolute;
+		top: 10px;
+		left: 90px;
+		visibility: visible;
+	}
+
+	.cell_2 {
+		position: absolute;
+		top: 10px;
+		left: 170px;
+		visibility: visible;
+	}
+
+	.cell_3 {
+		position: absolute;
+		top: 10px;
+		left: 260px;
+		visibility: visible;
+	}
+
+	.cell_4 {
+		position: absolute;
+		top: 10px;
+		left: 340px;
+		visibility: visible;
+
+	}
+
+	.cell_5 {
+		position: absolute;
+		top: 10px;
+		left: 420px;
+		visibility: visible;
+	}
+
+	.cell_6 {
+		position: absolute;
+		top: 10px;
+		left: 510px;
+		visibility: visible;
+	}
+
+	.cell_7 {
+		position: absolute;
+		top: 10px;
+		left: 590px;
+		visibility: visible;
+	}
+
+	.cell_8 {
+		position: absolute;
+		top: 10px;
+		left: 670px;
+		visibility: visible;
+	}
+
+	/** -------------------------------------------- */
+
+	.cell_9 {
+		position: absolute;
+		top: 90px;
+		left: 10px;
+		visibility: visible;
+	}
+
+	.cell_10 {
+		position: absolute;
+		top: 90px;
+		left: 90px;
+		visibility: visible;
+	}
+
+	.cell_11 {
+		position: absolute;
+		top: 90px;
+		left: 170px;
+		visibility: visible;
+	}
+
+	.cell_12 {
+		position: absolute;
+		top: 90px;
+		left: 260px;
+		visibility: visible;
+	}
+
+	.cell_13 {
+		position: absolute;
+		top: 90px;
+		left: 340px;
+		visibility: visible;
+	}
+
+	.cell_14 {
+		position: absolute;
+		top: 90px;
+		left: 420px;
+		visibility: visible;
+	}
+
+	.cell_15 {
+		position: absolute;
+		top: 90px;
+		left: 510px;
+		visibility: visible;
+	}
+
+	.cell_16 {
+		position: absolute;
+		top: 90px;
+		left: 590px;
+		visibility: visible;
+	}
+
+	.cell_17 {
+		position: absolute;
+		top: 90px;
+		left: 670px;
+		visibility: visible;
+	}
+
+	/** -------------------------------------------- */
+
+	.cell_18 {
+		position: absolute;
+		top: 170px;
+		left: 10px;
+		visibility: visible;
+	}
+
+	.cell_19 {
+		position: absolute;
+		top: 170px;
+		left: 90px;
+		visibility: visible;
+	}
+
+	.cell_20 {
+		position: absolute;
+		top: 170px;
+		left: 170px;
+		visibility: visible;
+	}
+
+	.cell_21 {
+		position: absolute;
+		top: 170px;
+		left: 260px;
+		visibility: visible;
+	}
+
+	.cell_22 {
+		position: absolute;
+		top: 170px;
+		left: 340px;
+		visibility: visible;
+	}
+
+	.cell_23 {
+		position: absolute;
+		top: 170px;
+		left: 420px;
+		visibility: visible;
+	}
+
+	.cell_24 {
+		position: absolute;
+		top: 170px;
+		left: 510px;
+		visibility: visible;
+	}
+
+	.cell_25 {
+		position: absolute;
+		top: 170px;
+		left: 590px;
+		visibility: visible;
+	}
+
+	.cell_26 {
+		position: absolute;
+		top: 170px;
+		left: 670px;
+		visibility: visible;
+	}
+
+	/** -------------------------------------------- */
+
+	.cell_27 {
+		position: absolute;
+		top: 260px;
+		left: 10px;
+		visibility: visible;
+	}
+
+	.cell_28 {
+		position: absolute;
+		top: 260px;
+		left: 90px;
+		visibility: visible;
+	}
+
+	.cell_29 {
+		position: absolute;
+		top: 260px;
+		left: 170px;
+		visibility: visible;
+	}
+
+	.cell_30 {
+		position: absolute;
+		top: 260px;
+		left: 260px;
+		visibility: visible;
+	}
+
+	.cell_31 {
+		position: absolute;
+		top: 260px;
+		left: 340px;
+		visibility: visible;
+	}
+
+	.cell_32 {
+		position: absolute;
+		top: 260px;
+		left: 420px;
+		visibility: visible;
+	}
+
+	.cell_33 {
+		position: absolute;
+		top: 260px;
+		left: 510px;
+		visibility: visible;
+	}
+
+	.cell_34 {
+		position: absolute;
+		top: 260px;
+		left: 590px;
+		visibility: visible;
+	}
+
+	.cell_35 {
+		position: absolute;
+		top: 260px;
+		left: 670px;
+		visibility: visible;
+	}
+
+	/** -------------------------------------------- */
+
+	.cell_36 {
+		position: absolute;
+		top: 340px;
+		left: 10px;
+		visibility: visible;
+	}
+
+	.cell_37 {
+		position: absolute;
+		top: 340px;
+		left: 90px;
+		visibility: visible;
+	}
+
+	.cell_38 {
+		position: absolute;
+		top: 340px;
+		left: 170px;
+		visibility: visible;
+	}
+
+	.cell_39 {
+		position: absolute;
+		top: 340px;
+		left: 260px;
+		visibility: visible;
+	}
+
+	.cell_40 {
+		position: absolute;
+		top: 340px;
+		left: 340px;
+		visibility: visible;
+	}
+
+	.cell_41 {
+		position: absolute;
+		top: 340px;
+		left: 420px;
+		visibility: visible;
+	}
+
+	.cell_42 {
+		position: absolute;
+		top: 340px;
+		left: 510px;
+		visibility: visible;
+	}
+
+	.cell_43 {
+		position: absolute;
+		top: 340px;
+		left: 590px;
+		visibility: visible;
+	}
+
+	.cell_44 {
+		position: absolute;
+		top: 340px;
+		left: 670px;
+		visibility: visible;
+	}
+
+	/** -------------------------------------------- */
+
+	.cell_45 {
+		position: absolute;
+		top: 420px;
+		left: 10px;
+		visibility: visible;
+	}
+
+	.cell_46 {
+		position: absolute;
+		top: 420px;
+		left: 90px;
+		visibility: visible;
+	}
+
+	.cell_47 {
+		position: absolute;
+		top: 420px;
+		left: 170px;
+		visibility: visible;
+	}
+
+	.cell_48 {
+		position: absolute;
+		top: 420px;
+		left: 260px;
+		visibility: visible;
+	}
+
+	.cell_49 {
+		position: absolute;
+		top: 420px;
+		left: 340px;
+		visibility: visible;
+	}
+
+	.cell_50 {
+		position: absolute;
+		top: 420px;
+		left: 420px;
+		visibility: visible;
+	}
+
+	.cell_51 {
+		position: absolute;
+		top: 420px;
+		left: 510px;
+		visibility: visible;
+	}
+
+	.cell_52 {
+		position: absolute;
+		top: 420px;
+		left: 590px;
+		visibility: visible;
+	}
+
+	.cell_53 {
+		position: absolute;
+		top: 420px;
+		left: 670px;
+		visibility: visible;
+	}
+
+	/** -------------------------------------------- */
+
+	.cell_54 {
+		position: absolute;
+		top: 510px;
+		left: 10px;
+		visibility: visible;
+	}
+
+	.cell_55 {
+		position: absolute;
+		top: 510px;
+		left: 90px;
+		visibility: visible;
+	}
+
+	.cell_56 {
+		position: absolute;
+		top: 510px;
+		left: 170px;
+		visibility: visible;
+	}
+
+	.cell_57 {
+		position: absolute;
+		top: 510px;
+		left: 260px;
+		visibility: visible;
+	}
+
+	.cell_58 {
+		position: absolute;
+		top: 510px;
+		left: 340px;
+		visibility: visible;
+	}
+
+	.cell_59 {
+		position: absolute;
+		top: 510px;
+		left: 420px;
+		visibility: visible;
+	}
+
+	.cell_60 {
+		position: absolute;
+		top: 510px;
+		left: 510px;
+		visibility: visible;
+	}
+
+	.cell_61 {
+		position: absolute;
+		top: 510px;
+		left: 590px;
+		visibility: visible;
+	}
+
+	.cell_62 {
+		position: absolute;
+		top: 510px;
+		left: 670px;
+		visibility: visible;
+	}
+
+	/** -------------------------------------------- */
+
+	.cell_63 {
+		position: absolute;
+		top: 590px;
+		left: 10px;
+		visibility: visible;
+	}
+
+	.cell_64 {
+		position: absolute;
+		top: 590px;
+		left: 90px;
+		visibility: visible;
+	}
+
+	.cell_65 {
+		position: absolute;
+		top: 590px;
+		left: 170px;
+		visibility: visible;
+	}
+
+	.cell_66 {
+		position: absolute;
+		top: 590px;
+		left: 260px;
+		visibility: visible;
+	}
+
+	.cell_67 {
+		position: absolute;
+		top: 590px;
+		left: 340px;
+		visibility: visible;
+	}
+
+	.cell_68 {
+		position: absolute;
+		top: 590px;
+		left: 420px;
+		visibility: visible;
+	}
+
+	.cell_69 {
+		position: absolute;
+		top: 590px;
+		left: 510px;
+		visibility: visible;
+	}
+
+	.cell_70 {
+		position: absolute;
+		top: 590px;
+		left: 590px;
+		visibility: visible;
+	}
+
+	.cell_71 {
+		position: absolute;
+		top: 590px;
+		left: 670px;
+		visibility: visible;
+	}
+
+	/** -------------------------------------------- */
+
+	.cell_72 {
+		position: absolute;
+		top: 670px;
+		left: 10px;
+		visibility: visible;
+	}
+
+	.cell_73 {
+		position: absolute;
+		top: 670px;
+		left: 90px;
+		visibility: visible;
+	}
+
+	.cell_74 {
+		position: absolute;
+		top: 670px;
+		left: 170px;
+		visibility: visible;
+	}
+
+	.cell_75 {
+		position: absolute;
+		top: 670px;
+		left: 260px;
+		visibility: visible;
+	}
+
+	.cell_76 {
+		position: absolute;
+		top: 670px;
+		left: 340px;
+		visibility: visible;
+	}
+
+	.cell_77 {
+		position: absolute;
+		top: 670px;
+		left: 420px;
+		visibility: visible;
+	}
+
+	.cell_78 {
+		position: absolute;
+		top: 670px;
+		left: 510px;
+		visibility: visible;
+	}
+
+	.cell_79 {
+		position: absolute;
+		top: 670px;
+		left: 590px;
+		visibility: visible;
+	}
+
+	.cell_80 {
+		position: absolute;
+		top: 670px;
+		left: 670px;
+		visibility: visible;
+	}
+
+	.mainSudoku {
+		position: relative;
+		top: 15px;
+		left: 400px;
+		height: 755px;
+		width: 755px;
+		border: 1px solid black;
+		background-color: whitesmoke;
+	}
+
+	.startBtn{
+		position: relative;
+		top: 0px;
+		left: 0px;
+	}
+
+	.resetBtn{
+		position: relative;
+		top: 60px;
+		left: 0px;
+	}
+
+	.alert{
+		position: absolute;
+		top: 350px;
+		left: 380px;
+		height: 100px;
+		width: 800px;
+		border: 3px solid darkgreen;
+		visibility: hidden;
+		background-color: black;
+		background-image: url("res/sysFailure.png");
+	}
+
+	.tools{
+		position: absolute;
+		top: 15px;
+		left: 400px;
+		height: 751px;
+		width: 100px;
+		border: 3px solid black;
+		visibility: visible;
+		background-color: black;
+	}
+
+	.tab{
+		position: absolute;
+		top: 350px;
+		left: -23px;
+		height: 100px;
+		width: 20px;
+		visibility: visible;
+		background-image: url("res/tab.png");
+	}
+
+	.options{
+		position: absolute;
+		top:100px;
+		left: 20px;
+		height: 100px;
+		width: 75px;
+		border: 1px solid black;
+	}
+
+	.optionText{
+		color: white;
+		cursor: pointer;
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
+
+	.spacer{
+		height: 100px;
+	}
+
+	.about{
+		position: absolute;
+		top: 15px;
+		left: 400px;
+		height: 755px;
+		width: 755px;
+		border: 1px solid black;
+		background-color: black;
+		visibility: hidden;
+	}
+
+	.aboutText{
+		position: absolute;
+		top:100px;
+		height: 70%;
+		width:90%;
+		color: white;
+		background: transparent;
+		padding: 10px 10px 10px 10px;
+		border: 0px solid black;
+		resize: none;
+	}
+
+	.aboutImage{
+		position: absolute;
+		top:10px;
+		left:0px;
+		height: 75px;
+		width: 575px;
+		background-image: url("res/ngSudoku.png");
+	}
+
+
+
+</style>
+
+
+<body>
+
+<div class="tools" ng-controller="toolCtrl" >
+	     <div class="tab" ng-click="doClick()"></div>
+		<div class="options">
+			<text class="optionText" ng-click="optionClick('solve')" ng-style="{'visibility': isVisible}">solve</text>
+			<div class="spacer"></div>
+			<text class="optionText" ng-click="optionClick('reset')"ng-style="{'visibility': isVisible}">reset</text>
+			<div class="spacer"></div>
+			<text class="optionText" ng-click="optionClick('about')"><span ng-bind="about"></span></text>
+		</div>
+</div>
+
+
+<div ng-controller="testCtrl">
+
+	<div class="mainSudoku">
+		<input class="cell cell_0"  type="number"  ng-model="value0"  ng-keyup="updateValue({cell:0,value:value0})" ng-disabled="isDisabled">
+		<input class="cell cell_1"  type="number"  ng-model="value1"  ng-keyup="updateValue({cell:1,value:value1})" ng-disabled="isDisabled">
+		<input class="cell cell_2"  type="number"  ng-model="value2"  ng-keyup="updateValue({cell:2,value:value2})" ng-disabled="isDisabled">
+		<input class="cell cell_3"  type="number"  ng-model="value3"  ng-keyup="updateValue({cell:3,value:value3})" ng-disabled="isDisabled">
+		<input class="cell cell_4"  type="number"  ng-model="value4"  ng-keyup="updateValue({cell:4,value:value4})" ng-disabled="isDisabled">
+		<input class="cell cell_5"  type="number"  ng-model="value5"  ng-keyup="updateValue({cell:5,value:value5})" ng-disabled="isDisabled">
+		<input class="cell cell_6"  type="number"  ng-model="value6"  ng-keyup="updateValue({cell:6,value:value6})" ng-disabled="isDisabled">
+		<input class="cell cell_7"  type="number"  ng-model="value7"  ng-keyup="updateValue({cell:7,value:value7})" ng-disabled="isDisabled">
+		<input class="cell cell_8"  type="number"  ng-model="value8"  ng-keyup="updateValue({cell:8,value:value8})" ng-disabled="isDisabled">
+
+		<input class="cell cell_9"  type="number"  ng-model="value9"  ng-keyup="updateValue({cell:9,value:value9})" ng-disabled="isDisabled">
+		<input class="cell cell_10"  type="number"  ng-model="value10"  ng-keyup="updateValue({cell:10,value:value10})" ng-disabled="isDisabled">
+		<input class="cell cell_11"  type="number"  ng-model="value11"  ng-keyup="updateValue({cell:11,value:value11})" ng-disabled="isDisabled">
+		<input class="cell cell_12"  type="number"  ng-model="value12"  ng-keyup="updateValue({cell:12,value:value12})" ng-disabled="isDisabled">
+		<input class="cell cell_13"  type="number"  ng-model="value13"  ng-keyup="updateValue({cell:13,value:value13})" ng-disabled="isDisabled">
+		<input class="cell cell_14"  type="number"  ng-model="value14"  ng-keyup="updateValue({cell:14,value:value14})" ng-disabled="isDisabled">
+		<input class="cell cell_15"  type="number"  ng-model="value15"  ng-keyup="updateValue({cell:15,value:value15})" ng-disabled="isDisabled">
+		<input class="cell cell_16"  type="number"  ng-model="value16"  ng-keyup="updateValue({cell:16,value:value16})" ng-disabled="isDisabled">
+		<input class="cell cell_17"  type="number"  ng-model="value17"  ng-keyup="updateValue({cell:17,value:value17})" ng-disabled="isDisabled">
+
+		<input class="cell cell_18"  type="number"  ng-model="value18"  ng-keyup="updateValue({cell:18,value:value18})" ng-disabled="isDisabled">
+		<input class="cell cell_19"  type="number"  ng-model="value19"  ng-keyup="updateValue({cell:19,value:value19})" ng-disabled="isDisabled">
+		<input class="cell cell_20"  type="number"  ng-model="value20"  ng-keyup="updateValue({cell:20,value:value20})" ng-disabled="isDisabled">
+		<input class="cell cell_21"  type="number"  ng-model="value21"  ng-keyup="updateValue({cell:21,value:value21})" ng-disabled="isDisabled">
+		<input class="cell cell_22"  type="number"  ng-model="value22"  ng-keyup="updateValue({cell:22,value:value22})" ng-disabled="isDisabled">
+		<input class="cell cell_23"  type="number"  ng-model="value23"  ng-keyup="updateValue({cell:23,value:value23})" ng-disabled="isDisabled">
+		<input class="cell cell_24"  type="number"  ng-model="value24"  ng-keyup="updateValue({cell:24,value:value24})" ng-disabled="isDisabled">
+		<input class="cell cell_25"  type="number"  ng-model="value25"  ng-keyup="updateValue({cell:25,value:value25})" ng-disabled="isDisabled">
+		<input class="cell cell_26"  type="number"  ng-model="value26"  ng-keyup="updateValue({cell:26,value:value26})" ng-disabled="isDisabled">
+
+
+		<input class="cell cell_27"  type="number"  ng-model="value27"  ng-keyup="updateValue({cell:27,value:value27})" ng-disabled="isDisabled">
+		<input class="cell cell_28"  type="number"  ng-model="value28"  ng-keyup="updateValue({cell:28,value:value28})" ng-disabled="isDisabled">
+		<input class="cell cell_29"  type="number"  ng-model="value29"  ng-keyup="updateValue({cell:29,value:value29})" ng-disabled="isDisabled">
+		<input class="cell cell_30"  type="number"  ng-model="value30"  ng-keyup="updateValue({cell:30,value:value30})" ng-disabled="isDisabled">
+		<input class="cell cell_31"  type="number"  ng-model="value31"  ng-keyup="updateValue({cell:31,value:value31})" ng-disabled="isDisabled">
+		<input class="cell cell_32"  type="number"  ng-model="value32"  ng-keyup="updateValue({cell:32,value:value32})" ng-disabled="isDisabled">
+		<input class="cell cell_33"  type="number"  ng-model="value33"  ng-keyup="updateValue({cell:33,value:value33})" ng-disabled="isDisabled">
+		<input class="cell cell_34"  type="number"  ng-model="value34"  ng-keyup="updateValue({cell:34,value:value34})" ng-disabled="isDisabled">
+		<input class="cell cell_35"  type="number"  ng-model="value35"  ng-keyup="updateValue({cell:35,value:value35})" ng-disabled="isDisabled">
+
+		<input class="cell cell_36"  type="number"  ng-model="value36"  ng-keyup="updateValue({cell:36,value:value36})" ng-disabled="isDisabled">
+		<input class="cell cell_37"  type="number"  ng-model="value37"  ng-keyup="updateValue({cell:37,value:value37})" ng-disabled="isDisabled">
+		<input class="cell cell_38"  type="number"  ng-model="value38"  ng-keyup="updateValue({cell:38,value:value38})" ng-disabled="isDisabled">
+		<input class="cell cell_39"  type="number"  ng-model="value39"  ng-keyup="updateValue({cell:39,value:value39})" ng-disabled="isDisabled">
+		<input class="cell cell_40"  type="number"  ng-model="value40"  ng-keyup="updateValue({cell:40,value:value40})" ng-disabled="isDisabled">
+		<input class="cell cell_41"  type="number"  ng-model="value41"  ng-keyup="updateValue({cell:41,value:value41})" ng-disabled="isDisabled">
+		<input class="cell cell_42"  type="number"  ng-model="value42"  ng-keyup="updateValue({cell:42,value:value42})" ng-disabled="isDisabled">
+		<input class="cell cell_43"  type="number"  ng-model="value43"  ng-keyup="updateValue({cell:43,value:value43})" ng-disabled="isDisabled">
+		<input class="cell cell_44"  type="number"  ng-model="value44"  ng-keyup="updateValue({cell:44,value:value44})" ng-disabled="isDisabled">
+
+		<input class="cell cell_45"  type="number"  ng-model="value45"  ng-keyup="updateValue({cell:45,value:value45})" ng-disabled="isDisabled">
+		<input class="cell cell_46"  type="number"  ng-model="value46"  ng-keyup="updateValue({cell:46,value:value46})" ng-disabled="isDisabled">
+		<input class="cell cell_47"  type="number"  ng-model="value47"  ng-keyup="updateValue({cell:47,value:value47})" ng-disabled="isDisabled">
+		<input class="cell cell_48"  type="number"  ng-model="value48"  ng-keyup="updateValue({cell:48,value:value48})" ng-disabled="isDisabled">
+		<input class="cell cell_49"  type="number"  ng-model="value49"  ng-keyup="updateValue({cell:49,value:value49})" ng-disabled="isDisabled">
+		<input class="cell cell_50"  type="number"  ng-model="value50"  ng-keyup="updateValue({cell:50,value:value50})" ng-disabled="isDisabled">
+		<input class="cell cell_51"  type="number"  ng-model="value51"  ng-keyup="updateValue({cell:51,value:value51})" ng-disabled="isDisabled">
+		<input class="cell cell_52"  type="number"  ng-model="value52"  ng-keyup="updateValue({cell:52,value:value52})" ng-disabled="isDisabled">
+		<input class="cell cell_53"  type="number"  ng-model="value53"  ng-keyup="updateValue({cell:53,value:value53})" ng-disabled="isDisabled">
+
+
+		<input class="cell cell_54"  type="number"  ng-model="value54"  ng-keyup="updateValue({cell:54,value:value54})" ng-disabled="isDisabled">
+		<input class="cell cell_55"  type="number"  ng-model="value55"  ng-keyup="updateValue({cell:55,value:value55})" ng-disabled="isDisabled">
+		<input class="cell cell_56"  type="number"  ng-model="value56"  ng-keyup="updateValue({cell:56,value:value56})" ng-disabled="isDisabled">
+		<input class="cell cell_57"  type="number"  ng-model="value57"  ng-keyup="updateValue({cell:57,value:value57})" ng-disabled="isDisabled">
+		<input class="cell cell_58"  type="number"  ng-model="value58"  ng-keyup="updateValue({cell:58,value:value58})" ng-disabled="isDisabled">
+		<input class="cell cell_59"  type="number"  ng-model="value59"  ng-keyup="updateValue({cell:59,value:value59})" ng-disabled="isDisabled">
+		<input class="cell cell_60"  type="number"  ng-model="value60"  ng-keyup="updateValue({cell:60,value:value60})" ng-disabled="isDisabled">
+		<input class="cell cell_61"  type="number"  ng-model="value61"  ng-keyup="updateValue({cell:61,value:value61})" ng-disabled="isDisabled">
+		<input class="cell cell_62"  type="number"  ng-model="value62"  ng-keyup="updateValue({cell:62,value:value62})" ng-disabled="isDisabled">
+
+		<input class="cell cell_63"  type="number"  ng-model="value63"  ng-keyup="updateValue({cell:63,value:value63})" ng-disabled="isDisabled">
+		<input class="cell cell_64"  type="number"  ng-model="value64"  ng-keyup="updateValue({cell:64,value:value64})" ng-disabled="isDisabled">
+		<input class="cell cell_65"  type="number"  ng-model="value65"  ng-keyup="updateValue({cell:65,value:value65})" ng-disabled="isDisabled">
+		<input class="cell cell_66"  type="number"  ng-model="value66"  ng-keyup="updateValue({cell:66,value:value66})" ng-disabled="isDisabled">
+		<input class="cell cell_67"  type="number"  ng-model="value67"  ng-keyup="updateValue({cell:67,value:value67})" ng-disabled="isDisabled">
+		<input class="cell cell_68"  type="number"  ng-model="value68"  ng-keyup="updateValue({cell:68,value:value68})" ng-disabled="isDisabled">
+		<input class="cell cell_69"  type="number"  ng-model="value69"  ng-keyup="updateValue({cell:69,value:value69})" ng-disabled="isDisabled">
+		<input class="cell cell_70"  type="number"  ng-model="value70"  ng-keyup="updateValue({cell:70,value:value70})" ng-disabled="isDisabled">
+		<input class="cell cell_71"  type="number"  ng-model="value71"  ng-keyup="updateValue({cell:71,value:value71})" ng-disabled="isDisabled">
+
+		<input class="cell cell_72"  type="number"  ng-model="value72"  ng-keyup="updateValue({cell:72,value:value72})" ng-disabled="isDisabled">
+		<input class="cell cell_73"  type="number"  ng-model="value73"  ng-keyup="updateValue({cell:73,value:value73})" ng-disabled="isDisabled">
+		<input class="cell cell_74"  type="number"  ng-model="value74"  ng-keyup="updateValue({cell:74,value:value74})" ng-disabled="isDisabled">
+		<input class="cell cell_75"  type="number"  ng-model="value75"  ng-keyup="updateValue({cell:75,value:value75})" ng-disabled="isDisabled">
+		<input class="cell cell_76"  type="number"  ng-model="value76"  ng-keyup="updateValue({cell:76,value:value76})" ng-disabled="isDisabled">
+		<input class="cell cell_77"  type="number"  ng-model="value77"  ng-keyup="updateValue({cell:77,value:value77})" ng-disabled="isDisabled">
+		<input class="cell cell_78"  type="number"  ng-model="value78"  ng-keyup="updateValue({cell:78,value:value78})" ng-disabled="isDisabled">
+		<input class="cell cell_79"  type="number"  ng-model="value79"  ng-keyup="updateValue({cell:79,value:value79})" ng-disabled="isDisabled">
+		<input class="cell cell_80"  type="number"  ng-model="value80"  ng-keyup="updateValue({cell:80,value:value80})" ng-disabled="isDisabled">
+	</div>
+</div>
+
+<div ng-controller="alertCtrl" class="alert" ng-style="{'visibility': alertFlag}" ng-click="doClose()">
+	<text>my attempt to solve this puzzle is a complete and abject failure</text>
+</div>
+
+<div class="about" ng-controller="aboutCtrl" ng-style="{'visibility': isAboutVisible}">
+	<textarea class="aboutText" ng-model="info"></textarea>
+	<div class="aboutImage"></div>
+</div>
+
+
+
+
+<!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/GreenSock-JS/BezierPlugin.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.13.1/TweenMax.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
