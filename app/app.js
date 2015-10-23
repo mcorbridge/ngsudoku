@@ -1035,7 +1035,7 @@ angular.module('myApp', [])
 			"in my algorithm uses what is termed 'dancing links' or DLX, which is essentially a backtracking algorithm.\n\nOnce I knew the code " +
 			"worked, I set out to create a user-friendly web interface view. I knew I had an algorithm that worked, I just wasn't sure how " +
 			"to get that information in or out.  I was trusting that Angularjs was sufficiently decoupled in it's MVC implementation that I would have " +
-			"the flexibility to integrate with the underlying model.  It did.\n\nHere is the final product.  You can see the code at Github.\n\n" +
+			"the flexibility to integrate with the underlying model.  It did.\n\nHere is the final product.  You can see the code at https://github.com/mcorbridge/ngsudoku.\n\n" +
 			"Michael Corbridge\nOctober 2015"
 
 		var isClicked = false;
