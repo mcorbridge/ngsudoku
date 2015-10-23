@@ -1028,7 +1028,7 @@ angular.module('myApp', [])
 			"challenge in spring 2015 as a way to get familiar with the AngularJS framework.  My first draft was ... meh ... not " +
 			"so great.  I struggled with developing a crisp way to update both the view and the model.  Since the bulk of my experience " +
 			"is in Flex (Actionscript), and Java methodologies, I encountered some difficulties.  I let this code lay fallow for the summer " +
-			"as I moved on to other challenges.  This fall I picked up where I had left off, and re-evaluated my approach.\n\nI focused first on " +
+			"as I moved on to other challenges.  This fall I picked up where I left off, and re-evaluated my approach.\n\nI focused first on " +
 			"creating a well organized and robust model to represent the sudoku grid.  Then I added layers of algorithms to solve for the " +
 			"empty cells.  The strategies for solving Sudoku are well known, and there a sites devoted to these methods.  Any beginner Sudoku solver will " +
 			"intuitively employ these methods, however the challenge to me was creating an algorithm that encapsulate these strategies.  The last stage " +
