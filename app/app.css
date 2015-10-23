@@ -1,0 +1,715 @@
+/* app css stylesheet */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.cell {
+  width: 70px;
+  height: 70px;
+  font-size: 50pt;
+  border:1px solid #8AC007;
+  text-align: center;
+}
+
+.hideValue{
+  color:transparent;
+}
+
+.cell_0 {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  visibility: visible;
+}
+
+.cell_1 {
+  position: absolute;
+  top: 10px;
+  left: 90px;
+  visibility: visible;
+}
+
+.cell_2 {
+  position: absolute;
+  top: 10px;
+  left: 170px;
+  visibility: visible;
+}
+
+.cell_3 {
+  position: absolute;
+  top: 10px;
+  left: 260px;
+  visibility: visible;
+}
+
+.cell_4 {
+  position: absolute;
+  top: 10px;
+  left: 340px;
+  visibility: visible;
+
+}
+
+.cell_5 {
+  position: absolute;
+  top: 10px;
+  left: 420px;
+  visibility: visible;
+}
+
+.cell_6 {
+  position: absolute;
+  top: 10px;
+  left: 510px;
+  visibility: visible;
+}
+
+.cell_7 {
+  position: absolute;
+  top: 10px;
+  left: 590px;
+  visibility: visible;
+}
+
+.cell_8 {
+  position: absolute;
+  top: 10px;
+  left: 670px;
+  visibility: visible;
+}
+
+/** -------------------------------------------- */
+
+.cell_9 {
+  position: absolute;
+  top: 90px;
+  left: 10px;
+  visibility: visible;
+}
+
+.cell_10 {
+  position: absolute;
+  top: 90px;
+  left: 90px;
+  visibility: visible;
+}
+
+.cell_11 {
+  position: absolute;
+  top: 90px;
+  left: 170px;
+  visibility: visible;
+}
+
+.cell_12 {
+  position: absolute;
+  top: 90px;
+  left: 260px;
+  visibility: visible;
+}
+
+.cell_13 {
+  position: absolute;
+  top: 90px;
+  left: 340px;
+  visibility: visible;
+}
+
+.cell_14 {
+  position: absolute;
+  top: 90px;
+  left: 420px;
+  visibility: visible;
+}
+
+.cell_15 {
+  position: absolute;
+  top: 90px;
+  left: 510px;
+  visibility: visible;
+}
+
+.cell_16 {
+  position: absolute;
+  top: 90px;
+  left: 590px;
+  visibility: visible;
+}
+
+.cell_17 {
+  position: absolute;
+  top: 90px;
+  left: 670px;
+  visibility: visible;
+}
+
+/** -------------------------------------------- */
+
+.cell_18 {
+  position: absolute;
+  top: 170px;
+  left: 10px;
+  visibility: visible;
+}
+
+.cell_19 {
+  position: absolute;
+  top: 170px;
+  left: 90px;
+  visibility: visible;
+}
+
+.cell_20 {
+  position: absolute;
+  top: 170px;
+  left: 170px;
+  visibility: visible;
+}
+
+.cell_21 {
+  position: absolute;
+  top: 170px;
+  left: 260px;
+  visibility: visible;
+}
+
+.cell_22 {
+  position: absolute;
+  top: 170px;
+  left: 340px;
+  visibility: visible;
+}
+
+.cell_23 {
+  position: absolute;
+  top: 170px;
+  left: 420px;
+  visibility: visible;
+}
+
+.cell_24 {
+  position: absolute;
+  top: 170px;
+  left: 510px;
+  visibility: visible;
+}
+
+.cell_25 {
+  position: absolute;
+  top: 170px;
+  left: 590px;
+  visibility: visible;
+}
+
+.cell_26 {
+  position: absolute;
+  top: 170px;
+  left: 670px;
+  visibility: visible;
+}
+
+/** -------------------------------------------- */
+
+.cell_27 {
+  position: absolute;
+  top: 260px;
+  left: 10px;
+  visibility: visible;
+}
+
+.cell_28 {
+  position: absolute;
+  top: 260px;
+  left: 90px;
+  visibility: visible;
+}
+
+.cell_29 {
+  position: absolute;
+  top: 260px;
+  left: 170px;
+  visibility: visible;
+}
+
+.cell_30 {
+  position: absolute;
+  top: 260px;
+  left: 260px;
+  visibility: visible;
+}
+
+.cell_31 {
+  position: absolute;
+  top: 260px;
+  left: 340px;
+  visibility: visible;
+}
+
+.cell_32 {
+  position: absolute;
+  top: 260px;
+  left: 420px;
+  visibility: visible;
+}
+
+.cell_33 {
+  position: absolute;
+  top: 260px;
+  left: 510px;
+  visibility: visible;
+}
+
+.cell_34 {
+  position: absolute;
+  top: 260px;
+  left: 590px;
+  visibility: visible;
+}
+
+.cell_35 {
+  position: absolute;
+  top: 260px;
+  left: 670px;
+  visibility: visible;
+}
+
+/** -------------------------------------------- */
+
+.cell_36 {
+  position: absolute;
+  top: 340px;
+  left: 10px;
+  visibility: visible;
+}
+
+.cell_37 {
+  position: absolute;
+  top: 340px;
+  left: 90px;
+  visibility: visible;
+}
+
+.cell_38 {
+  position: absolute;
+  top: 340px;
+  left: 170px;
+  visibility: visible;
+}
+
+.cell_39 {
+  position: absolute;
+  top: 340px;
+  left: 260px;
+  visibility: visible;
+}
+
+.cell_40 {
+  position: absolute;
+  top: 340px;
+  left: 340px;
+  visibility: visible;
+}
+
+.cell_41 {
+  position: absolute;
+  top: 340px;
+  left: 420px;
+  visibility: visible;
+}
+
+.cell_42 {
+  position: absolute;
+  top: 340px;
+  left: 510px;
+  visibility: visible;
+}
+
+.cell_43 {
+  position: absolute;
+  top: 340px;
+  left: 590px;
+  visibility: visible;
+}
+
+.cell_44 {
+  position: absolute;
+  top: 340px;
+  left: 670px;
+  visibility: visible;
+}
+
+/** -------------------------------------------- */
+
+.cell_45 {
+  position: absolute;
+  top: 420px;
+  left: 10px;
+  visibility: visible;
+}
+
+.cell_46 {
+  position: absolute;
+  top: 420px;
+  left: 90px;
+  visibility: visible;
+}
+
+.cell_47 {
+  position: absolute;
+  top: 420px;
+  left: 170px;
+  visibility: visible;
+}
+
+.cell_48 {
+  position: absolute;
+  top: 420px;
+  left: 260px;
+  visibility: visible;
+}
+
+.cell_49 {
+  position: absolute;
+  top: 420px;
+  left: 340px;
+  visibility: visible;
+}
+
+.cell_50 {
+  position: absolute;
+  top: 420px;
+  left: 420px;
+  visibility: visible;
+}
+
+.cell_51 {
+  position: absolute;
+  top: 420px;
+  left: 510px;
+  visibility: visible;
+}
+
+.cell_52 {
+  position: absolute;
+  top: 420px;
+  left: 590px;
+  visibility: visible;
+}
+
+.cell_53 {
+  position: absolute;
+  top: 420px;
+  left: 670px;
+  visibility: visible;
+}
+
+/** -------------------------------------------- */
+
+.cell_54 {
+  position: absolute;
+  top: 510px;
+  left: 10px;
+  visibility: visible;
+}
+
+.cell_55 {
+  position: absolute;
+  top: 510px;
+  left: 90px;
+  visibility: visible;
+}
+
+.cell_56 {
+  position: absolute;
+  top: 510px;
+  left: 170px;
+  visibility: visible;
+}
+
+.cell_57 {
+  position: absolute;
+  top: 510px;
+  left: 260px;
+  visibility: visible;
+}
+
+.cell_58 {
+  position: absolute;
+  top: 510px;
+  left: 340px;
+  visibility: visible;
+}
+
+.cell_59 {
+  position: absolute;
+  top: 510px;
+  left: 420px;
+  visibility: visible;
+}
+
+.cell_60 {
+  position: absolute;
+  top: 510px;
+  left: 510px;
+  visibility: visible;
+}
+
+.cell_61 {
+  position: absolute;
+  top: 510px;
+  left: 590px;
+  visibility: visible;
+}
+
+.cell_62 {
+  position: absolute;
+  top: 510px;
+  left: 670px;
+  visibility: visible;
+}
+
+/** -------------------------------------------- */
+
+.cell_63 {
+  position: absolute;
+  top: 590px;
+  left: 10px;
+  visibility: visible;
+}
+
+.cell_64 {
+  position: absolute;
+  top: 590px;
+  left: 90px;
+  visibility: visible;
+}
+
+.cell_65 {
+  position: absolute;
+  top: 590px;
+  left: 170px;
+  visibility: visible;
+}
+
+.cell_66 {
+  position: absolute;
+  top: 590px;
+  left: 260px;
+  visibility: visible;
+}
+
+.cell_67 {
+  position: absolute;
+  top: 590px;
+  left: 340px;
+  visibility: visible;
+}
+
+.cell_68 {
+  position: absolute;
+  top: 590px;
+  left: 420px;
+  visibility: visible;
+}
+
+.cell_69 {
+  position: absolute;
+  top: 590px;
+  left: 510px;
+  visibility: visible;
+}
+
+.cell_70 {
+  position: absolute;
+  top: 590px;
+  left: 590px;
+  visibility: visible;
+}
+
+.cell_71 {
+  position: absolute;
+  top: 590px;
+  left: 670px;
+  visibility: visible;
+}
+
+/** -------------------------------------------- */
+
+.cell_72 {
+  position: absolute;
+  top: 670px;
+  left: 10px;
+  visibility: visible;
+}
+
+.cell_73 {
+  position: absolute;
+  top: 670px;
+  left: 90px;
+  visibility: visible;
+}
+
+.cell_74 {
+  position: absolute;
+  top: 670px;
+  left: 170px;
+  visibility: visible;
+}
+
+.cell_75 {
+  position: absolute;
+  top: 670px;
+  left: 260px;
+  visibility: visible;
+}
+
+.cell_76 {
+  position: absolute;
+  top: 670px;
+  left: 340px;
+  visibility: visible;
+}
+
+.cell_77 {
+  position: absolute;
+  top: 670px;
+  left: 420px;
+  visibility: visible;
+}
+
+.cell_78 {
+  position: absolute;
+  top: 670px;
+  left: 510px;
+  visibility: visible;
+}
+
+.cell_79 {
+  position: absolute;
+  top: 670px;
+  left: 590px;
+  visibility: visible;
+}
+
+.cell_80 {
+  position: absolute;
+  top: 670px;
+  left: 670px;
+  visibility: visible;
+}
+
+.mainSudoku {
+  position: relative;
+  top: 15px;
+  left: 400px;
+  height: 755px;
+  width: 755px;
+  border: 1px solid black;
+  background-color: whitesmoke;
+}
+
+.startBtn{
+  position: relative;
+  top: 0px;
+  left: 0px;
+}
+
+.resetBtn{
+  position: relative;
+  top: 60px;
+  left: 0px;
+}
+
+.alert{
+  position: absolute;
+  top: 350px;
+  left: 380px;
+  height: 100px;
+  width: 800px;
+  border: 3px solid darkgreen;
+  visibility: hidden;
+  background-color: black;
+  background-image: url("res/sysFailure.png");
+}
+
+.tools{
+  position: absolute;
+  top: 15px;
+  left: 400px;
+  height: 751px;
+  width: 100px;
+  border: 3px solid black;
+  visibility: visible;
+  background-color: black;
+}
+
+.tab{
+  position: absolute;
+  top: 350px;
+  left: -23px;
+  height: 100px;
+  width: 20px;
+  visibility: visible;
+  background-image: url("res/tab.png");
+}
+
+.options{
+  position: absolute;
+  top:100px;
+  left: 20px;
+  height: 100px;
+  width: 75px;
+  border: 1px solid black;
+}
+
+.optionText{
+  color: white;
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.spacer{
+  height: 100px;
+}
+
+.about{
+  position: absolute;
+  top: 15px;
+  left: 400px;
+  height: 755px;
+  width: 755px;
+  border: 1px solid black;
+  background-color: black;
+  visibility: hidden;
+}
+
+.aboutText{
+  position: absolute;
+  top:100px;
+  height: 70%;
+  width:90%;
+  color: white;
+  background: transparent;
+  padding: 10px 10px 10px 10px;
+  border: 0px solid black;
+  resize: none;
+}
+
+.aboutImage{
+  position: absolute;
+  top:10px;
+  left:0px;
+  height: 75px;
+  width: 575px;
+  background-image: url("res/ngSudoku.png");
+}
+
