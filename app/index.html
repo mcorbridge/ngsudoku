@@ -12,6 +12,14 @@
 	<link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
 	<link rel="stylesheet" href="styles/app.css">
 	<script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+
+	<!-- Bootstrap -->
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
 </head>
 
 
@@ -19,7 +27,7 @@
 <body>
 
 <div class="tools" ng-controller="toolCtrl" >
-	     <div class="tab" ng-click="doClick()"></div>
+	     <div ng-class="tab" ng-click="doClick()"></div>
 		<div class="options">
 			<text class="optionText" ng-click="optionClick('solve')" ng-style="{'visibility': isVisible}">solve</text>
 			<div class="spacer"></div>
@@ -129,6 +137,20 @@
 		<input class="cell cell_79"  type="number"  ng-model="value79"  ng-keyup="updateValue({cell:79,value:value79})" ng-disabled="isDisabled">
 		<input class="cell cell_80"  type="number"  ng-model="value80"  ng-keyup="updateValue({cell:80,value:value80})" ng-disabled="isDisabled">
 	</div>
+
+	<modal title="Login form" visible="showModal">
+		<form role="form">
+			<div class="form-group">
+				<label for="email">Email address</label>
+				<input type="email" class="form-control" id="email" placeholder="Enter email" />
+			</div>
+			<div class="form-group">
+				<label for="password">Password</label>
+				<input type="password" class="form-control" id="password" placeholder="Password" />
+			</div>
+			<button type="submit" class="btn btn-default">Submit</button>
+		</form>
+	</modal>
 </div>
 
 <div ng-controller="alertCtrl" class="alert" ng-style="{'visibility': alertFlag}" ng-click="doClose()">
@@ -143,13 +165,17 @@
 
 
 
+
 <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 <script src="bower_components/angular/angular.min.js"></script>
 <script src="bower_components/angular-route/angular-route.min.js"></script>
 <script src="bower_components/GreenSock-JS/BezierPlugin.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.13.1/TweenMax.min.js"></script>
+
 <!--<script src="../dist/scripts/main.min.js"></script>-->
 <script src="../app/scripts/app.js"></script>
 </body>

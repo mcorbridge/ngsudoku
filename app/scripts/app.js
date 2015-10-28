@@ -29,6 +29,8 @@ angular.module('myApp', [])
 
 		$scope.isDisabled = false;
 
+		$scope.showModal = true;
+
 		var isStarted = false;
 		var solutionIterations = 0;
 		var sudoku;
@@ -675,7 +677,7 @@ angular.module('myApp', [])
 			// If no dual options are found (that is, cells that have only 2 possible solutions)
 			// then we are done, kaput, finito,
 			if(options.length === 0){
-				console.log('puzzle cannot be solved');
+				console.log('(b)puzzle cannot be solved');
 				$rootScope.$emit( "solutionFailure");
 				$scope.isDisabled = true;
 				return;
@@ -843,7 +845,7 @@ angular.module('myApp', [])
 		 */
 		var doNoSolution = function (arg) {
 			if(arg === undefined){
-				console.log('this puzzle cannot be solved');
+				console.log('(a)this puzzle cannot be solved');
 				$rootScope.$emit( "solutionFailure");
 				$scope.isDisabled = true;
 			}else{
@@ -881,6 +883,7 @@ angular.module('myApp', [])
 			for(var n=0;n<sudoku.length;n++){
 				sudoku[n] = 0;
 			}
+			$scope.isDisabled = false;
 			setNewCellValue();
 		};
 
@@ -985,7 +988,11 @@ angular.module('myApp', [])
 			setOptions();
 			setMatrix();
 			setView();
+
+			//flash the tab so the user has an idea that something *might* be hidden there
+
 		};
+
 
 		// And here we start the ball rolling ...
 		initialize();
@@ -1007,14 +1014,19 @@ angular.module('myApp', [])
 			$rootScope.$emit('enablePuzzle');
 		}
 
+		$rootScope.$on("hideAlert", function() {
+			$scope.alertFlag = 'hidden';
+		});
+
 	}])
 
-	.controller('toolCtrl', ['$scope','$rootScope', function ($scope,$rootScope) {
+	.controller('toolCtrl', ['$scope','$rootScope','$interval', function ($scope,$rootScope,$interval) {
 
 		var isClicked = false;
 		var isVisible = true;
 		$scope.isVisible = 'visible';
 		$scope.about = 'about';
+
 
 		$scope.doClick = function(){
 			if(!isClicked){
@@ -1029,14 +1041,17 @@ angular.module('myApp', [])
 			switch(arg){
 				case 'solve':
 					$rootScope.$emit('solve');
+					$rootScope.$emit('hideAlert');
 					break;
 
 				case 'clear':
 					$rootScope.$emit('clear');
+					$rootScope.$emit('hideAlert');
 					break;
 
 				case 'reset':
 					$rootScope.$emit('reset');
+					$rootScope.$emit('hideAlert');
 					break;
 
 				case 'check':
@@ -1048,9 +1063,24 @@ angular.module('myApp', [])
 					(isVisible)?$scope.isVisible = 'hidden':$scope.isVisible = 'visible';
 					(isVisible)?$scope.about = 'close':$scope.about = 'about';
 					isVisible = !isVisible;
+					$rootScope.$emit('hideAlert');
 					break;
 			}
 		}
+
+		var init = function() {
+			var ndx = 0;
+			var timer=$interval(function(){
+				($scope.tab === 'tab' ? $scope.tab = 'tabAlt' : $scope.tab = 'tab');
+				ndx++;
+				if(ndx >= 21){
+					$interval.cancel(timer);
+					timer=undefined;
+				}
+			},200);
+		};
+
+		init();
 
 	}])
 
@@ -1083,4 +1113,47 @@ angular.module('myApp', [])
 			isClicked = !isClicked;
 		});
 
-	}]);
+	}])
+
+	.directive('modal', function () {
+		return {
+			template: '<div class="modal fade">' +
+			'<div class="modal-dialog">' +
+			'<div class="modal-content">' +
+			'<div class="modal-header">' +
+			'<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
+			'<h4 class="modal-title">{{ title }}</h4>' +
+			'</div>' +
+			'<div class="modal-body" ng-transclude></div>' +
+			'</div>' +
+			'</div>' +
+			'</div>',
+			restrict: 'E',
+			transclude: true,
+			replace:true,
+			scope:true,
+			link: function postLink(scope, element, attrs) {
+				scope.title = attrs.title;
+
+				scope.$watch(attrs.visible, function(value){
+					if(value == true)
+						$(element).modal('show');
+					else
+						$(element).modal('hide');
+				});
+
+				$(element).on('shown.bs.modal', function(){
+					scope.$apply(function(){
+						scope.$parent[attrs.visible] = true;
+					});
+				});
+
+				$(element).on('hidden.bs.modal', function(){
+					scope.$apply(function(){
+						scope.$parent[attrs.visible] = false;
+					});
+				});
+			}
+		};
+	});
+
