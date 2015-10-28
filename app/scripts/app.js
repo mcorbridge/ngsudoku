@@ -752,6 +752,7 @@ angular.module('myApp', [])
 			}
 
 				sudoku[obj.cell] = updateNum;
+				setNewCellValue();
 		};
 
 
@@ -868,6 +869,30 @@ angular.module('myApp', [])
 			$scope.doReset();
 		});
 
+		$rootScope.$on("clear", function() {
+			doClear();
+		});
+
+		$rootScope.$on("check", function() {
+			doCheck();
+		});
+
+		var doClear = function(){
+			for(var n=0;n<sudoku.length;n++){
+				sudoku[n] = 0;
+			}
+			setNewCellValue();
+		};
+
+		/**
+		 * Granted, I could do A LOT more here, but 'Hey' there are a ZILLION sites
+		 * devoted to Sudoku! I'm just doing this to satisfy my own curiosity
+		 */
+		var doCheck = function(){
+			if(!checkSolution(sudoku))
+				$rootScope.$emit( "solutionFailure");
+		}
+
 		/**
 		 * We take the sudoku array we cloned (stored) before we started the dual option test
 		 * and use that to reset it back to that state.
@@ -911,15 +936,16 @@ angular.module('myApp', [])
 
 		var checkMultiOccurrence = function (arr) {
 			var a = [], b = [], prev, isSolution = true, n = 0;
-			arr.sort();
-			for (var i = 0; i < arr.length; i++) {
-				if (arr[i] !== prev) {
-					a.push(arr[i]);
+			var tmp = arr.slice(0); // we don't want to muck up the arr that currently represents the model
+			tmp.sort();
+			for (var i = 0; i < tmp.length; i++) {
+				if (tmp[i] !== prev) {
+					a.push(tmp[i]);
 					b.push(1);
 				} else {
 					b[b.length - 1]++;
 				}
-				prev = arr[i];
+				prev = tmp[i];
 			}
 
 			for (n = 0; n < b.length; n++) {
@@ -1005,8 +1031,16 @@ angular.module('myApp', [])
 					$rootScope.$emit('solve');
 					break;
 
+				case 'clear':
+					$rootScope.$emit('clear');
+					break;
+
 				case 'reset':
 					$rootScope.$emit('reset');
+					break;
+
+				case 'check':
+					$rootScope.$emit('check');
 					break;
 
 				case 'about':
