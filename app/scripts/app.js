@@ -1117,7 +1117,7 @@ angular.module('myApp', [])
 
 	.directive('modal', function () {
 		return {
-			template: '<div class="modal fade">' +
+			template: '<div class="modal fade" style="top:300px">' +
 			'<div class="modal-dialog">' +
 			'<div class="modal-content">' +
 			'<div class="modal-header">' +
