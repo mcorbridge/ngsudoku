@@ -36,6 +36,7 @@ angular.module('myApp', [])
 		var solutionIterations = 0;
 		var sudoku;
 		var initialSudoku;
+		var seedSudoku;
 		var clonedSudokuSolution = [];
 		var startTime;
 		var endTime;
@@ -111,7 +112,7 @@ angular.module('myApp', [])
 				0, 0, 7, 0, 0, 0, 2, 0, 0];
 
 			// copy of the original puzzle  - used for reset
-			initialSudoku = sudoku.slice(0);
+			seedSudoku = sudoku.slice(0);
 		};
 
 		var setOptions = function () {
@@ -772,6 +773,7 @@ angular.module('myApp', [])
 				startTime = startDate.getMilliseconds();
 				solutionIterations = 0;
 				isStarted = true;
+				initialSudoku = sudoku.slice(0);// if the puzzle solver has gone to the trouble of adding a new puzzle, let's save it for them
 			}
 
 			var emptyCellNum = getNumberOpenCells();
@@ -804,6 +806,7 @@ angular.module('myApp', [])
 
 			// Stop right there!  Don't go crazy on me!
 			if (solutionIterations >= 100) {
+				isStarted = false;
 				doNoSolution();
 				return;
 			}
@@ -819,8 +822,10 @@ angular.module('myApp', [])
 					endTime = endDate.getMilliseconds();
 					var solveTime = endTime - startTime;
 					console.log('total time to solve = ' + solveTime + ' ms');
+					isStarted = false;
 				} else {
 					if(optionTest === undefined){
+						isStarted = false;
 						doNoSolution();
 						return;
 					}
@@ -850,17 +855,43 @@ angular.module('myApp', [])
 				console.log('(a)this puzzle cannot be solved');
 				//$rootScope.$emit( "solutionFailure");
 				$scope.showErrorModal = true;
-				$scope.isDisabled = true;
+				$scope.isDisabled = false;
 			}else{
 				console.log('reset puzzle');
 			}
 			// reset the puzzle back to the start state
+			// we want to use the seed if the initialSudoku has been zero'd out
+			var resetSudoku = initialSudoku;
+			if(isBlank(initialSudoku)) {
+				resetSudoku = seedSudoku;
+			}
+
 			for (var n = 0; n < sudoku.length; n++) {
-				sudoku[n] = initialSudoku[n];
+				sudoku[n] = resetSudoku[n];
 			}
 			solutionIterations = 0;
 			setNewCellValue();
 		};
+
+		/**
+		 * test to see if the current state of the sudoku puzzle is blank (all zeros)
+		 * if so, then we will re-use the initial seed sudoku puzzle
+		 * @param matrix
+		 * @returns {boolean}
+		 */
+		var isBlank = function(matrix){
+			var test = false;
+			var ndx = 0;
+			for(var n=0; n<matrix.length; n++){
+				if(matrix[n] === 0){
+					ndx++;
+				}
+			}
+			if(ndx === 81){
+				test = true;
+			}
+			return test;
+		}
 
 		$rootScope.$on("enablePuzzle", function() {
 			$scope.isDisabled = false;
