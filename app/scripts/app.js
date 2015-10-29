@@ -29,7 +29,8 @@ angular.module('myApp', [])
 
 		$scope.isDisabled = false;
 
-		$scope.showModal = true;
+		$scope.showCheckModal = false;
+		$scope.showErrorModal = false;
 
 		var isStarted = false;
 		var solutionIterations = 0;
@@ -678,8 +679,9 @@ angular.module('myApp', [])
 			// then we are done, kaput, finito,
 			if(options.length === 0){
 				console.log('(b)puzzle cannot be solved');
-				$rootScope.$emit( "solutionFailure");
-				$scope.isDisabled = true;
+				//$rootScope.$emit( "solutionFailure");
+				//$scope.isDisabled = true;
+				$scope.showErrorModal = true;
 				return;
 			}
 
@@ -846,7 +848,8 @@ angular.module('myApp', [])
 		var doNoSolution = function (arg) {
 			if(arg === undefined){
 				console.log('(a)this puzzle cannot be solved');
-				$rootScope.$emit( "solutionFailure");
+				//$rootScope.$emit( "solutionFailure");
+				$scope.showErrorModal = true;
 				$scope.isDisabled = true;
 			}else{
 				console.log('reset puzzle');
@@ -892,8 +895,13 @@ angular.module('myApp', [])
 		 * devoted to Sudoku! I'm just doing this to satisfy my own curiosity
 		 */
 		var doCheck = function(){
-			if(!checkSolution(sudoku))
-				$rootScope.$emit( "solutionFailure");
+			if(!checkSolution(sudoku)) {
+				$scope.showErrorModal = true;
+			}else{
+				$scope.showCheckModal = true;
+			}
+
+
 		}
 
 		/**
@@ -989,7 +997,7 @@ angular.module('myApp', [])
 			setMatrix();
 			setView();
 
-			//flash the tab so the user has an idea that something *might* be hidden there
+
 
 		};
 
