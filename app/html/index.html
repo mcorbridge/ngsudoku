@@ -8,10 +8,10 @@
 	<meta name="description" content="angularjs and sudoku">
 	<meta name="keywords" content="michael corbridge, angularjs, sudoku, algorithms" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="../bower_components/html5-boilerplate/dist/css/normalize.css">
-	<link rel="stylesheet" href="../bower_components/html5-boilerplate/dist/css/main.css">
+	<link rel="stylesheet" href="../../bower_components/html5-boilerplate/dist/css/normalize.css">
+	<link rel="stylesheet" href="../../bower_components/html5-boilerplate/dist/css/main.css">
 
-	<script src="../bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+	<script src="../../bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 
 	<!-- Bootstrap -->
 	<!-- Latest compiled and minified CSS -->
@@ -20,7 +20,10 @@
 		  integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
 		  crossorigin="anonymous">
 
-	<link rel="stylesheet" href="styles/app.css">
+	<!--<link rel="stylesheet" href="../styles/app.css">-->
+
+	<link rel="stylesheet" href="../styles/main.min.css">
+
 
 
 </head>
@@ -28,6 +31,39 @@
 
 
 <body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">michael d corbridge : developer</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li><a href="#about">About</a></li>
+				<li><a href="#contact">Contact</a></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Work<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">html5</a></li>
+						<li><a href="#">android</a></li>
+						<li><a href="#">java</a></li>
+						<li><a href="sudoku/html/index.html">sudoku</a></li>
+						<li role="separator" class="divider"></li>
+						<li class="dropdown-header">experience</li>
+						<li><a href="#">Under Armour</a></li>
+						<li><a href="#">IBM</a></li>
+						<li><a href="#">Sun Life Assurance</a></li>
+						<li><a href="#">Adobe</a></li>
+						<li><a href="#">Environment Ontario</a></li>
+					</ul>
+				</li>
+				<li><a href="#blog">Blog</a></li>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div>
+</nav>
+
+<div class="aboutHeader"></div>
 
 <div class="tools" ng-controller="toolCtrl" >
 	     <div ng-class="tab" ng-click="doClick()"></div>
@@ -168,12 +204,12 @@
   -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-<script src="../bower_components/angular/angular.min.js"></script>
-<script src="../bower_components/angular-route/angular-route.min.js"></script>
-<script src="../bower_components/GreenSock-JS/BezierPlugin.js"></script>
+<script src="../../bower_components/angular/angular.min.js"></script>
+<script src="../../bower_components/angular-route/angular-route.min.js"></script>
+<script src="../../bower_components/GreenSock-JS/BezierPlugin.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.13.1/TweenMax.min.js"></script>
 
-<!--<script src="../dist/scripts/main.min.js"></script>-->
-<script src="../app/scripts/app.js"></script>
+<script src="../scripts/main.min.js"></script>
+<!--<script src="../scripts/app.js"></script>-->
 </body>
 </html>
