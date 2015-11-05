@@ -20,7 +20,7 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', [])
+angular.module('myApp', ['data'])
 
 
 	.controller('testCtrl', ['$scope', '$timeout','$rootScope', function ($scope,$timeout,$rootScope) {
@@ -1123,23 +1123,11 @@ angular.module('myApp', [])
 
 	}])
 
-	.controller('aboutCtrl', ['$scope','$rootScope', function ($scope,$rootScope) {
+	.controller('aboutCtrl', ['$scope','$rootScope', 'aboutInfo', function ($scope,$rootScope,aboutInfo) {
 
 		$scope.isAboutVisible = 'hidden';
 
-		$scope.info = "ngSudoko is my implementation of a solution to hard Sudoku puzzles using Angularjs.  I first took on this " +
-			"challenge in spring 2015 as a way to get familiar with the AngularJS framework.  My first draft was ... meh ... not " +
-			"so great.  I struggled with developing a crisp way to update both the view and the model.  Since the bulk of my experience " +
-			"is in Flex (Actionscript), and Java methodologies, I encountered some difficulties.  I let this code lay fallow for the summer " +
-			"as I moved on to other challenges.  This fall I picked up where I left off, and re-evaluated my approach.\n\nI focused first on " +
-			"creating a well organized and robust model to represent the sudoku grid.  Then I added layers of algorithms to solve for the " +
-			"empty cells.  The strategies for solving Sudoku are well known, and there a sites devoted to these methods.  Any beginner Sudoku solver will " +
-			"intuitively employ these methods, however the challenge to me was creating an algorithm that encapsulate these strategies.  The last stage " +
-			"in my algorithm uses what is termed 'dancing links' or DLX, which is essentially a backtracking algorithm.\n\nOnce I knew the code " +
-			"worked, I set out to create a user-friendly web interface view. I knew I had an algorithm that worked, I just wasn't sure how " +
-			"to get that information in or out.  I was trusting that Angularjs was sufficiently decoupled in it's MVC implementation that I would have " +
-			"the flexibility to integrate with the underlying model.  It did.\n\nHere is the final product.  You can see the code at https://github.com/mcorbridge/ngsudoku.\n\n" +
-			"Michael Corbridge\nOctober 2015"
+		$scope.info = aboutInfo.version1();
 
 		var isClicked = false;
 

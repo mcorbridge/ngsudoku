@@ -1,22 +1,23 @@
-/* app css stylesheet */
+/* app scss stylesheet */
 
-input[type=number]::-webkit-inner-spin-button {
-	-webkit-appearance: none;
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
 .cell {
-	width: 50px;
-	height: 50px;
-	border:1px solid #8AC007;
-	font-size: 40px;
-	display:inline-block
+  width: 50px;
+  height: 50px;
+  font-size: 50pt;
+  border:1px solid #8AC007;
+  text-align: center;
 }
 
 .hideValue{
   color:transparent;
 }
-
-/** -------------------0------------------------- */
 
 .cell_0 {
   position: absolute;
@@ -28,28 +29,28 @@ input[type=number]::-webkit-inner-spin-button {
 .cell_1 {
   position: absolute;
   top: 10px;
-  left: 65px;
+  left: 90px;
   visibility: visible;
 }
 
 .cell_2 {
   position: absolute;
   top: 10px;
-  left: 120px;
+  left: 170px;
   visibility: visible;
 }
 
 .cell_3 {
   position: absolute;
   top: 10px;
-  left: 180px;
+  left: 260px;
   visibility: visible;
 }
 
 .cell_4 {
   position: absolute;
   top: 10px;
-  left: 235px;
+  left: 340px;
   visibility: visible;
 
 }
@@ -57,227 +58,227 @@ input[type=number]::-webkit-inner-spin-button {
 .cell_5 {
   position: absolute;
   top: 10px;
-  left: 290px;
+  left: 420px;
   visibility: visible;
 }
 
 .cell_6 {
   position: absolute;
   top: 10px;
-  left: 350px;
+  left: 510px;
   visibility: visible;
 }
 
 .cell_7 {
   position: absolute;
   top: 10px;
-  left: 405px;
+  left: 590px;
   visibility: visible;
 }
 
 .cell_8 {
   position: absolute;
   top: 10px;
-  left: 460px;
+  left: 670px;
   visibility: visible;
 }
 
-/** -------------------1------------------------- */
+/** -------------------------------------------- */
 
 .cell_9 {
   position: absolute;
-  top: 65px;
+  top: 90px;
   left: 10px;
   visibility: visible;
 }
 
 .cell_10 {
   position: absolute;
-  top: 65px;
-  left: 65px;
+  top: 90px;
+  left: 90px;
   visibility: visible;
 }
 
 .cell_11 {
   position: absolute;
-  top: 65px;
-  left: 120px;
+  top: 90px;
+  left: 170px;
   visibility: visible;
 }
 
 .cell_12 {
   position: absolute;
-  top: 65px;
-  left: 180px;
+  top: 90px;
+  left: 260px;
   visibility: visible;
 }
 
 .cell_13 {
   position: absolute;
-  top: 65px;
-  left: 235px;
+  top: 90px;
+  left: 340px;
   visibility: visible;
 }
 
 .cell_14 {
   position: absolute;
-  top: 65px;
-  left: 290px;
+  top: 90px;
+  left: 420px;
   visibility: visible;
 }
 
 .cell_15 {
   position: absolute;
-  top: 65px;
-  left: 350px;
+  top: 90px;
+  left: 510px;
   visibility: visible;
 }
 
 .cell_16 {
   position: absolute;
-  top: 65px;
-  left: 405px;
+  top: 90px;
+  left: 590px;
   visibility: visible;
 }
 
 .cell_17 {
   position: absolute;
-  top: 65px;
-  left: 460px;
+  top: 90px;
+  left: 670px;
   visibility: visible;
 }
 
-/** -------------------2------------------------- */
+/** -------------------------------------------- */
 
 .cell_18 {
   position: absolute;
-  top: 120px;
+  top: 170px;
   left: 10px;
   visibility: visible;
 }
 
 .cell_19 {
   position: absolute;
-  top: 120px;
-  left: 65px;
+  top: 170px;
+  left: 90px;
   visibility: visible;
 }
 
 .cell_20 {
   position: absolute;
-  top: 120px;
-  left: 120px;
+  top: 170px;
+  left: 170px;
   visibility: visible;
 }
 
 .cell_21 {
   position: absolute;
-  top: 120px;
-  left: 180px;
+  top: 170px;
+  left: 260px;
   visibility: visible;
 }
 
 .cell_22 {
   position: absolute;
-  top: 120px;
-  left: 235px;
+  top: 170px;
+  left: 340px;
   visibility: visible;
 }
 
 .cell_23 {
   position: absolute;
-  top: 120px;
-  left: 290px;
+  top: 170px;
+  left: 420px;
   visibility: visible;
 }
 
 .cell_24 {
   position: absolute;
-  top: 120px;
-  left: 350px;
+  top: 170px;
+  left: 510px;
   visibility: visible;
 }
 
 .cell_25 {
   position: absolute;
-  top: 120px;
-  left: 405px;
+  top: 170px;
+  left: 590px;
   visibility: visible;
 }
 
 .cell_26 {
   position: absolute;
-  top: 120px;
-  left: 460px;
+  top: 170px;
+  left: 670px;
   visibility: visible;
 }
 
-/** -----------------3--------------------------- */
+/** -------------------------------------------- */
 
 .cell_27 {
   position: absolute;
-  top: 120px;
+  top: 260px;
   left: 10px;
   visibility: visible;
 }
 
 .cell_28 {
   position: absolute;
-  top: 120px;
-  left: 65px;
+  top: 260px;
+  left: 90px;
   visibility: visible;
 }
 
 .cell_29 {
   position: absolute;
-  top: 120px;
-  left: 120px;
+  top: 260px;
+  left: 170px;
   visibility: visible;
 }
 
 .cell_30 {
   position: absolute;
-  top: 120px;
-  left: 180px;
+  top: 260px;
+  left: 260px;
   visibility: visible;
 }
 
 .cell_31 {
   position: absolute;
-  top: 120px;
-  left: 235px;
+  top: 260px;
+  left: 340px;
   visibility: visible;
 }
 
 .cell_32 {
   position: absolute;
-  top: 120px;
-  left: 290px;
+  top: 260px;
+  left: 420px;
   visibility: visible;
 }
 
 .cell_33 {
   position: absolute;
-  top: 120px;
-  left: 350px;
+  top: 260px;
+  left: 510px;
   visibility: visible;
 }
 
 .cell_34 {
   position: absolute;
-  top: 120px;
-  left: 405px;
+  top: 260px;
+  left: 590px;
   visibility: visible;
 }
 
 .cell_35 {
   position: absolute;
-  top: 120px;
-  left: 460px;
+  top: 260px;
+  left: 670px;
   visibility: visible;
 }
 
-/** -----------------4--------------------------- */
+/** -------------------------------------------- */
 
 .cell_36 {
   position: absolute;
@@ -342,7 +343,7 @@ input[type=number]::-webkit-inner-spin-button {
   visibility: visible;
 }
 
-/** --------------------5------------------------ */
+/** -------------------------------------------- */
 
 .cell_45 {
   position: absolute;
@@ -407,7 +408,7 @@ input[type=number]::-webkit-inner-spin-button {
   visibility: visible;
 }
 
-/** ---------------6----------------------------- */
+/** -------------------------------------------- */
 
 .cell_54 {
   position: absolute;
@@ -472,7 +473,7 @@ input[type=number]::-webkit-inner-spin-button {
   visibility: visible;
 }
 
-/** -------------------7------------------------- */
+/** -------------------------------------------- */
 
 .cell_63 {
   position: absolute;
@@ -537,7 +538,7 @@ input[type=number]::-webkit-inner-spin-button {
   visibility: visible;
 }
 
-/** ------------------8-------------------------- */
+/** -------------------------------------------- */
 
 .cell_72 {
   position: absolute;
@@ -633,14 +634,14 @@ input[type=number]::-webkit-inner-spin-button {
   border: 3px solid darkgreen;
   visibility: hidden;
   background-color: black;
-  background-image: url("../images/sysFailure.png");
+  background-image: url("images/sysFailure.png");
 }
 
 .tools{
   position: absolute;
   top: 15px;
   left: 400px;
-  height: 755px;
+  height: 751px;
   width: 100px;
   border: 3px solid black;
   visibility: visible;
@@ -654,17 +655,7 @@ input[type=number]::-webkit-inner-spin-button {
   height: 100px;
   width: 20px;
   visibility: visible;
-  background-image: url("../images/tab.png");
-}
-
-.tabAlt{
-  position: absolute;
-  top: 350px;
-  left: -23px;
-  height: 100px;
-  width: 20px;
-  visibility: visible;
-  background-image: url("../images/tabAlt.png");
+  background-image: url("images/tab.png");
 }
 
 .options{
@@ -688,7 +679,7 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 .spacer{
-  height: 100px;
+  height: 50px;
 }
 
 .about{
@@ -720,6 +711,6 @@ input[type=number]::-webkit-inner-spin-button {
   left:0px;
   height: 75px;
   width: 575px;
-  background-image: url("../images/ngSudoku.png");
+  background-image: url("images/ngSudoku.png");
 }
 
